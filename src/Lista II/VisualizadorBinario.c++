@@ -1,61 +1,81 @@
 #include <Arduino.h>
 
-// Aplicar no Tinkercad
+// Define os pinos conectados aos botões (botaoPin[0] = INCREMENTAR, botaoPin[1] = DECREMENTAR)
+int botaoPin[] = {7, 6};  
 
-int leds[] = {2, 3, 4, 5}; // Pinos dos LEDs
-const int botaoUp = 6;
-const int botaoDown = 7;
+// Define os pinos conectados aos 4 LEDs (de bit menos significativo para o mais)
+int ledPin[] = {10, 11, 12, 13}; 
 
+// Variável do contador binário (vai de 0 até 15)
 int contador = 0;
-bool ultimoEstadoUp = false;
-bool ultimoEstadoDown = false;
+
+// Variáveis para guardar o último estado dos botões (para detectar transições)
+bool ultimoEstadoBotaoMais = HIGH;
+bool ultimoEstadoBotaoMenos = HIGH;
 
 void setup() {
-  for (int i = 0; i < 4; i++) pinMode(leds[i], OUTPUT);
-  pinMode(botaoUp, INPUT);
-  pinMode(botaoDown, INPUT);
-  atualizarLeds();
+  // Configura todos os LEDs como saída
+  for (int i = 0; i < 4; i++) {
+    pinMode(ledPin[i], OUTPUT);
+  }
+
+  // Configura os dois botões como entrada com resistor de pull-up
+  pinMode(botaoPin[0], INPUT_PULLUP); // botão de incrementar
+  pinMode(botaoPin[1], INPUT_PULLUP); // botão de decrementar
 }
 
 void loop() {
-  bool estadoUp = digitalRead(botaoUp);
-  bool estadoDown = digitalRead(botaoDown);
+  // Lê o estado atual dos botões
+  bool estadoMais = digitalRead(botaoPin[0]);
+  bool estadoMenos = digitalRead(botaoPin[1]);
 
-  if (estadoUp && !ultimoEstadoUp) {
+  // Se o botão de incremento foi pressionado (transição HIGH → LOW)
+  if (estadoMais == LOW && ultimoEstadoBotaoMais == HIGH) {
     if (contador < 15) {
-      contador++;
-      atualizarLeds();
+      contador++; // Incrementa o contador
     } else {
-      piscarLeds();
+      piscarLEDs(); // Pisca LEDs se passar do limite
     }
+    delay(200); // Delay para debounce
   }
 
-  if (estadoDown && !ultimoEstadoDown) {
+  // Se o botão de decremento foi pressionado (transição HIGH → LOW)
+  if (estadoMenos == LOW && ultimoEstadoBotaoMenos == HIGH) {
     if (contador > 0) {
-      contador--;
-      atualizarLeds();
+      contador--; // Decrementa o contador
     } else {
-      piscarLeds();
+      piscarLEDs(); // Pisca LEDs se passar do limite
     }
+    delay(200); // Delay para debounce
   }
 
-  ultimoEstadoUp = estadoUp;
-  ultimoEstadoDown = estadoDown;
-  delay(50); // debounce simples
+  // Atualiza os LEDs com base no valor atual do contador
+  atualizarLEDs(contador);
+
+  // Atualiza o estado anterior dos botões para próxima leitura
+  ultimoEstadoBotaoMais = estadoMais;
+  ultimoEstadoBotaoMenos = estadoMenos;
 }
 
-void atualizarLeds() {
+// Função que acende os LEDs de acordo com o valor binário de 'valor'
+void atualizarLEDs(int valor) {
   for (int i = 0; i < 4; i++) {
-    digitalWrite(leds[i], (contador >> i) & 1);
+    int bit = (valor >> i) & 1; // Extrai o bit correspondente
+    digitalWrite(ledPin[i], bit); // Acende ou apaga o LED
   }
 }
 
-void piscarLeds() {
+// Função que pisca todos os LEDs 3 vezes para indicar erro/limite
+void piscarLEDs() {
   for (int i = 0; i < 3; i++) {
-    for (int j = 0; j < 4; j++) digitalWrite(leds[j], LOW);
-    delay(150);
-    for (int j = 0; j < 4; j++) digitalWrite(leds[j], HIGH);
-    delay(150);
+    for (int j = 0; j < 4; j++) {
+      digitalWrite(ledPin[j], HIGH); // Liga todos os LEDs
+    }
+    delay(100);
+
+    for (int j = 0; j < 4; j++) {
+      digitalWrite(ledPin[j], LOW); // Desliga todos os LEDs
+    }
+    delay(100);
   }
-  atualizarLeds(); // Volta pro valor correto
 }
