@@ -8,27 +8,27 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "C:/Users/miguel_r_xavier/ArduinoExercices/src",
-                "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/cores/arduino",
-                "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/variants/standard",
-                "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
-                "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "c:/Users/migue/Desktop/ArduinoExercices/src",
+                "C:/Users/migue/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "C:/Users/migue/.platformio/packages/framework-arduino-avr/variants/standard",
+                "C:/Users/migue/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "C:/Users/migue/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "C:/Users/migue/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "C:/Users/migue/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "C:/Users/migue/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 ""
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "C:/Users/miguel_r_xavier/ArduinoExercices/src",
-                    "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/cores/arduino",
-                    "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/variants/standard",
-                    "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
-                    "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/libraries/HID/src",
-                    "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                    "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
-                    "C:/Users/miguel_r_xavier/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "c:/Users/migue/Desktop/ArduinoExercices/src",
+                    "C:/Users/migue/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "C:/Users/migue/.platformio/packages/framework-arduino-avr/variants/standard",
+                    "C:/Users/migue/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "C:/Users/migue/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "C:/Users/migue/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "C:/Users/migue/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "C:/Users/migue/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     ""
                 ]
             },
@@ -43,7 +43,7 @@
             ],
             "cStandard": "gnu11",
             "cppStandard": "gnu++11",
-            "compilerPath": "C:/Users/miguel_r_xavier/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
+            "compilerPath": "C:/Users/migue/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe",
             "compilerArgs": [
                 "-mmcu=atmega328p",
                 ""
