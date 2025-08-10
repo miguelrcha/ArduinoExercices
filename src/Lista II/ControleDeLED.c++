@@ -1,23 +1,28 @@
 #include <Arduino.h>
 
-int botaoPin = 7;  //Refere-se ao Botão
-int ledPin = 10;    //Refere-se ao LED
-bool estadoBotao = 0; //Utilizada para armazenar o estado do Botão
+const byte pinButton[] = {8};
+const byte pinLed[] = {9};
 
-void setup() { //Inicialização
-  pinMode(ledPin, OUTPUT);          
-  pinMode(botaoPin, INPUT_PULLUP); 
+bool estadoLed = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(pinButton, INPUT_PULLUP);
+  pinMode(pinLed, OUTPUT);
+
 }
 
-bool lerBotao() { //Ler o estado do Botão
-  return digitalRead(botaoPin); 
+void loop() {
+  // put your main code here, to run repeatedly:
+  estadoLed = lerBotao();
+  controleLED(estadoLed);
 }
 
-void controleLED(bool estado) { //Controlar o estado do LED
-  digitalWrite(ledPin, estado ? HIGH : LOW);
+bool lerBotao() {
+  // INPUT_PULLUP no void setup(){} == "!"
+  return !digitalRead(pinButton);
 }
 
-void loop() { //Lógica Principal
-  estadoBotao = lerBotao(); //Leitura do Botão   
-  controleLED(estadoBotao); //Controle do LED conforme leitura     
+void controleLED(bool estadoLed) {
+  digitalWrite(pinLed, estadoLed);
 }
